@@ -1,0 +1,33 @@
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Prisma
+/prisma/.env
+/prisma/migration.lock
+/prisma/client
+
+# Docker
+docker-compose.override.yml
+docker-compose.yml
+
+# VSCode
+.vscode/
+
+# Logs
+*.log
+
+# Dependency directories
+.pnp/
+.pnp.js
+
+# Yarn Integrity file
+.yarn-integrity
+
+# dotenv environment variables file
+.env
+
+# OS generated files
+.DS_Store
+Thumbs.db
