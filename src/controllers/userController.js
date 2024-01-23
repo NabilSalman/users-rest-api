@@ -1,5 +1,7 @@
 const { PrismaClient } = require('@prisma/client');
 const { validationResult } = require('express-validator');
+const { memoize } = require('../util/memoization');
+
 const prisma = new PrismaClient();
 
 const createUser = async (req, res, next) => {
@@ -41,6 +43,10 @@ const getAllUsers = async (req, res, next) => {
     }
 };
 
+const memoizedGetAllUsers = memoize(async (...args) => {
+    return getAllUsers(...args);
+});
+
 const updateUser = async (req, res, next) => {
     try {
         const errors = validationResult(req);
@@ -77,7 +83,7 @@ const deleteUser = async (req, res, next) => {
 
 module.exports = {
     createUser,
-    getAllUsers,
+    getAllUsers: memoizedGetAllUsers,
     updateUser,
     deleteUser,
 };
