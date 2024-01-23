@@ -12,7 +12,7 @@ const createUser = async (req, res, next) => {
         const newUser = await prisma.user.create({
             data: { name, email, age, country, mobile },
         });
-        res.json(newUser);
+        res.status(201).json(newUser);
     } catch (error) {
         next(error);
     }
@@ -69,7 +69,7 @@ const deleteUser = async (req, res, next) => {
         await prisma.user.delete({
             where: { id: userId },
         });
-        res.send('User deleted successfully');
+        res.status(204).send('User deleted successfully');
     } catch (error) {
         next(error);
     }
